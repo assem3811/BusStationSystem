@@ -9,6 +9,7 @@ import javafx.scene.control.ComboBox;
 import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.JList;
+import javax.swing.JOptionPane;
 import javax.swing.JComboBox;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -114,9 +115,18 @@ public class LoginMenu {
 						DP3.setVisible(true);
 					}
 					
+					JOptionPane.showMessageDialog(btnNewButton, "Logged in Successfully!");
+					
 				}
 				else if(comboBox.getSelectedItem().toString() == "Passenger") {
-					PFrame.setVisible(true);
+					
+					String PUId = textField.getText();
+					String PPsd = passwordField.getText();
+					if(PUId.equals("Psn5669") && PPsd.equals("1122")) {
+						JOptionPane.showMessageDialog(btnNewButton, "Logged in Successfully!");
+						PFrame.setVisible(true);
+					}
+					
 				}
 				else if(comboBox.getSelectedItem().toString() == "Manager") {
 					MFrame.setVisible(true);
