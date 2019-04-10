@@ -1,7 +1,7 @@
 
 public class Drivers extends Employee {
 
-	int numberOfTrips = 0;
+int numberOfTrips = 0;
 	
 	// Parent arrguments: String name,int age,String gender,String address
 	
@@ -17,5 +17,4 @@ public class Drivers extends Employee {
 	public int getNumOfTrips() {
 		return numberOfTrips;
 	}
-
 }

@@ -21,6 +21,8 @@ public class Employee {
 		
 	}
 	
+	/*************************************************/
+	
 	public String getName() {
 		return name;
 	}
@@ -36,4 +38,5 @@ public class Employee {
 	public String getAddress() {
 		return address;
 	}
+
 }
