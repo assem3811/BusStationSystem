@@ -39,6 +39,7 @@ public class ManagerFrame extends JFrame {
 	/**
 	 * Create the frame.
 	 */
+	DriverFrame DF=new DriverFrame();
 	SettingTrips st = new SettingTrips();
 	Trips service = new Trips();
 	public ManagerFrame() {
@@ -61,21 +62,27 @@ public class ManagerFrame extends JFrame {
 				st.setVisible(true);
 			}
 		});
-		btnNewButton.setBounds(22, 69, 190, 25);
+		btnNewButton.setBounds(191, 69, 190, 25);
 		contentPane.add(btnNewButton);
 		
 		JButton btnNewButton_1 = new JButton("Drivers");
-		btnNewButton_1.setBounds(112, 186, 97, 25);
+		btnNewButton_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				DF.setVisible(true);
+			}
+		});
+		btnNewButton_1.setBounds(191, 152, 190, 25);
 		contentPane.add(btnNewButton_1);
 		
 		JButton btnNewButton_2 = new JButton("Show Trips");
 		btnNewButton_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
+				
 			}
 		});
 		
-		btnNewButton_2.setBounds(115, 131, 97, 25);
+		btnNewButton_2.setBounds(191, 113, 190, 25);
 		contentPane.add(btnNewButton_2);
 		
 		JButton btnLogout = new JButton("Logout");
