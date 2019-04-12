@@ -55,8 +55,9 @@ public class LoginScreen {
 	
 	PassengersFrame p1 = new PassengersFrame();
 	ManagerFrame m1 = new ManagerFrame();
-	DriverInfo DI= new DriverInfo();
-
+	DriverProfile D1=new DriverProfile();
+	
+	
 	private void initialize() {
 		frmBusSystem = new JFrame();
 		frmBusSystem.setTitle("Bus System");
@@ -123,34 +124,11 @@ public class LoginScreen {
 							else {
 								temp = buff.readLine();		
 							}
+							
+							
 						}
-					} catch (FileNotFoundException e1) {
-						// TODO Auto-generated catch block
-						e1.printStackTrace();
-					} catch (IOException e1) {
-						// TODO Auto-generated catch block
-						e1.printStackTrace();
-					}
-				}
-				if(comboBox.getSelectedItem().toString().equals("Driver")) {
-					try {
-						FileReader fileReader = new FileReader(new File("DriversLogin.txt"));
-						BufferedReader buff1 = new BufferedReader(fileReader);
-						String temp1 = buff1.readLine();
-						while(temp1!=null) {
-							if(temp1.equals(textField.getText())) {
-								temp1 = buff1.readLine();
-								if(temp1.equals(passwordField.getText())) {
-									DI.setVisible(true);
-									break;
-								}
-								else {
-									temp1 = buff1.readLine();								}
-							}
-							else {
-								temp1 = buff1.readLine();		
-							}
-						}
+						
+						
 					} catch (FileNotFoundException e1) {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();
@@ -160,10 +138,40 @@ public class LoginScreen {
 					}
 				}
 				
+				if(comboBox.getSelectedItem().toString().equals("Driver")) {
+					try {
+						FileReader fileReader = new FileReader(new File("DriversData.txt"));
+						BufferedReader buff = new BufferedReader(fileReader);
+						String temp = buff.readLine();
+						while(temp!=null) {
+							if(temp.equals(textField.getText())) {
+								temp = buff.readLine();
+								if(temp.equals(passwordField.getText())) {
+									D1.setVisible(true);
+									break;
+								}
+								else {
+									temp = buff.readLine();								}
+							}
+							else {
+								temp = buff.readLine();		
+							}
+							
+							
+						}
+						
+						
+					} catch (FileNotFoundException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					} catch (IOException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
 					}
+				}
+				
+			}
 		});
-			
-		
 		
 		btnNewButton.setBounds(220, 185, 97, 25);
 		frmBusSystem.getContentPane().add(btnNewButton);

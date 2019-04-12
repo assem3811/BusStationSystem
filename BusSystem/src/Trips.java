@@ -2,23 +2,26 @@ import java.util.ArrayList;
 
 public class Trips {
 	
-	static int tripIndex ;
-	int ticketsOfTrip;
-	public static ArrayList<String> tripsOnSystem = new ArrayList<>(1000);
-	
-	public void addTrip(int index,String tripDetails) {
-		tripsOnSystem.add(index, tripDetails);
+	int tripIndex;
+	String source;
+	String destination;
+	String tripDate;
+	String tripTime;
+ 
+
+	private static ArrayList<String> tripsList = new ArrayList<String>(); 
+	public Trips(int tripIndex,String source,String destination,String tripDate,String tripTime) {
+
+		
+		this.tripIndex = tripIndex;
+		this.source = source;
+		this.destination = destination;
+		this.tripDate = tripDate;
+		this.tripTime = tripTime;
 	}
 	
-	public void removeTrip(int index) {
-		tripsOnSystem.remove(index);
+	public void storeMyTrip(int index,String details) {
+		tripsList.add(index, details);
 	}
 	
-	public ArrayList<String> showTrips() {
-		return this.tripsOnSystem;
-	}
-	
-	public void setTicketsNum(int ticketsNum) {
-		this.ticketsOfTrip = ticketsNum;
-	}
 }

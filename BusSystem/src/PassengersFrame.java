@@ -10,6 +10,7 @@ import javax.swing.JComboBox;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import java.awt.Font;
+import java.awt.TextField;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
@@ -79,7 +80,7 @@ public class PassengersFrame extends JFrame {
 		JButton btnNewButton = new JButton("Confirm");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				JOptionPane.showMessageDialog(btnNewButton, "Successfull order!");
+				JOptionPane.showMessageDialog(btnNewButton, "Hello");
 			}
 		});
 		btnNewButton.setBounds(375, 186, 97, 25);
@@ -90,5 +91,5 @@ public class PassengersFrame extends JFrame {
 		lblNewLabel_2.setBounds(132, 13, 282, 30);
 		contentPane.add(lblNewLabel_2);
 	}
-
+	
 }

@@ -1,9 +1,13 @@
 import java.awt.BorderLayout;
+import java.awt.Container;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import javafx.scene.control.ComboBox;
+
 import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.JTextField;
@@ -48,19 +52,19 @@ public class SettingTrips extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	int tripindex=0;
 	private JLabel lblDriver;
-	
-	Trips service = new Trips();
-	int index = service.tripsOnSystem.size()-1;
+	Manager server = new Manager();
+	Trips newTrip;
+	int ind = 0;
 	private JLabel lblVehicle;
 	private JComboBox comboBox_1;
 	private JLabel lblOwrw;
 	private JComboBox comboBox_2;
 	private JLabel lblstops;
 	private JComboBox comboBox_3;
-	private JTextField textField_5;
+	protected Container tripsList;
 	public SettingTrips() {
+		
 		setTitle("Set Trip");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 710, 345);
@@ -129,19 +133,28 @@ public class SettingTrips extends JFrame {
 		textField_4.setBounds(472, 176, 67, 46);
 		contentPane.add(textField_4);
 		
+		JComboBox comboBox = new JComboBox();
+		comboBox.addItem("Assem");
+		comboBox.setBounds(358, 29, 103, 25);
+		contentPane.add(comboBox);
 		
 		btnConfirm = new JButton("Confirm");
 		btnConfirm.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
 					FileWriter fileIn = new FileWriter("AvailableTrips.txt",true);
-					fileIn.write(Integer.toString(++tripindex)+","+textField.getText()+","+textField_1.getText()+","+textField_2.getText()+","+textField_3.getText()+","+textField_4.getText()+System.lineSeparator());
+					fileIn.write(Integer.toString(++ind)+","+textField.getText()+","+textField_1.getText()+","+textField_2.getText()+","+textField_3.getText()+","
+					+textField_4.getText()+","+"Driver:"+comboBox.getSelectedItem().toString()+","+comboBox_1.getSelectedItem().toString()
+					+","+comboBox_2.getSelectedItem().toString()
+					+","+"#Stops: "+comboBox_3.getSelectedItem().toString()+System.lineSeparator());
+					
 					fileIn.close();
 				} catch (IOException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
-				service.addTrip(++index, textField.getText()+","+textField_1.getText()+","+textField_2.getText()+","+textField_3.getText()+","+textField_4.getText());
+				
+				
 				
 			}
 		});
@@ -153,9 +166,7 @@ public class SettingTrips extends JFrame {
 		lblDriver.setBounds(275, 13, 84, 46);
 		contentPane.add(lblDriver);
 		
-		JComboBox comboBox = new JComboBox();
-		comboBox.setBounds(358, 29, 103, 25);
-		contentPane.add(comboBox);
+		
 		
 		lblVehicle = new JLabel("Vehicle:");
 		lblVehicle.setFont(new Font("Tahoma", Font.PLAIN, 25));
@@ -191,15 +202,5 @@ public class SettingTrips extends JFrame {
 		comboBox_3.addItem("Many");
 		comboBox_3.setBounds(605, 109, 75, 22);
 		contentPane.add(comboBox_3);
-		
-		JLabel lbltickets = new JLabel("#Tickets:");
-		lbltickets.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		lbltickets.setBounds(551, 171, 84, 46);
-		contentPane.add(lbltickets);
-		
-		textField_5 = new JTextField();
-		textField_5.setColumns(10);
-		textField_5.setBounds(629, 171, 51, 46);
-		contentPane.add(textField_5);
 	}
 }

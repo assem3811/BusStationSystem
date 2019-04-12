@@ -15,6 +15,10 @@ public class Vehicles {
 		
 	}
 	
+	public void setSeats(int noSeats) {
+		this.numberOfSeats = noSeats; 
+	}
+	
 	public String vehicleType() {
 		return vehicleType;
 	}
