@@ -41,9 +41,10 @@ public class ManagerFrame extends JFrame {
 	 * Create the frame.
 	 */
 	SettingTrips st = new SettingTrips();
-	Manager showT = new Manager();
+	
 	ShowTrips showAvT = new ShowTrips();
 	ShowDriver showD=new ShowDriver();
+	AddDriver AD=new AddDriver();
 	
 	public ManagerFrame() {
 		setTitle("Admin");
@@ -71,7 +72,7 @@ public class ManagerFrame extends JFrame {
 		JButton btnNewButton_1 = new JButton("Add Driver");
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				
+			AD.setVisible(true);
 			}
 		});
 		btnNewButton_1.setBounds(181, 147, 190, 25);

@@ -1,3 +1,0 @@
-Assem,25,01095995871,SidiGaber,123,Male
-menna,25,01005356809,alex,123,Female
-assemq,90,010258985,sidi beshe,123,Male

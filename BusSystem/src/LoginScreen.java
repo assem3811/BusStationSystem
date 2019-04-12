@@ -55,7 +55,7 @@ public class LoginScreen {
 	
 	PassengersFrame p1 = new PassengersFrame();
 	ManagerFrame m1 = new ManagerFrame();
-	DriverProfile D1=new DriverProfile();
+	DriverInfo D1=new DriverInfo();
 	
 	
 	private void initialize() {

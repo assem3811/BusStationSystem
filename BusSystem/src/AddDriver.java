@@ -126,7 +126,7 @@ public class AddDriver extends JFrame {
 		btnAdd.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
-					FileWriter fileIn = new FileWriter("AvaiableDrivers.txt",true);
+					FileWriter fileIn = new FileWriter("AvailableDrivers.txt",true);
 					FileWriter file = new FileWriter("DriversLogin.txt",true);
 					fileIn.write(textField.getText()+","+textField_1.getText()+","+textField_2.getText()+","+textField_3.getText()+","+textField_4.getText()+","+comboBox.getSelectedItem().toString()+System.lineSeparator());
 					file.write(textField.getText()+System.lineSeparator()+textField_4.getText()+System.lineSeparator());

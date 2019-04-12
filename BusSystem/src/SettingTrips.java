@@ -1,24 +1,18 @@
-import java.awt.BorderLayout;
 import java.awt.Container;
 import java.awt.EventQueue;
-
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-
-import javafx.scene.control.ComboBox;
-
-import javax.swing.JLabel;
 import java.awt.Font;
-import javax.swing.JTextField;
-import javax.swing.JButton;
-
-import java.io.File;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
+
+import javax.swing.JButton;
 import javax.swing.JComboBox;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+import javax.swing.border.EmptyBorder;
 
 public class SettingTrips extends JFrame {
 
@@ -53,8 +47,8 @@ public class SettingTrips extends JFrame {
 	 * Create the frame.
 	 */
 	private JLabel lblDriver;
-	Manager server = new Manager();
-	Trip newTrip;
+	
+	
 	int ind = 0;
 	private JLabel lblVehicle;
 	private JComboBox comboBox_1;

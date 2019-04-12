@@ -6,6 +6,8 @@ import java.awt.event.ActionListener;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
@@ -20,11 +22,16 @@ public class ShowDriver extends JFrame {
 	/**
 	 * Launch the application.
 	 */
+	private JPanel contentPane;
+
+	/**
+	 * Launch the application.
+	 */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					ShowDriver frame = new ShowDriver();
+					ShowTrips frame = new ShowTrips();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -37,12 +44,18 @@ public class ShowDriver extends JFrame {
 	 * Create the frame.
 	 */
 	public ShowDriver() {
-		setTitle("All Drivers");
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 632, 401);
-		
-
+		setTitle("Curent Drivers");
+		setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
+		setBounds(100, 100, 555, 333);
+		contentPane = new JPanel();
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		setContentPane(contentPane);
+		contentPane.setLayout(null);
+	
 		DefaultListModel<String> model = new DefaultListModel<>();
+		JList<String> list = new JList<>( model );
+		list.setBorder(new BevelBorder(BevelBorder.LOWERED, Color.BLUE, null, null, null));
+		list.setBackground(Color.WHITE);
 		try {
 			FileReader fileReader = new FileReader(new File("AvailableDrivers.txt"));
 			BufferedReader buff = new BufferedReader(fileReader);
@@ -55,7 +68,42 @@ public class ShowDriver extends JFrame {
 			}catch(Exception e) {
 				
 			}
-	}}
-
-
-
+		list.setBounds(12, 13, 408, 227);
+		contentPane.add(list);
+		
+		JButton btnNewButton = new JButton("Remove");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				model.remove(list.getSelectedIndex());
+			}
+		});
+		btnNewButton.setBounds(432, 12, 97, 25);
+		contentPane.add(btnNewButton);
+		
+		JButton btnClose = new JButton("Close");
+		btnClose.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				setVisible(false);
+			}
+		});
+		btnClose.setBounds(432, 88, 97, 25);
+		contentPane.add(btnClose);
+		
+		JButton btnNewButton_1 = new JButton("Save");
+		btnNewButton_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				try {
+					FileWriter write = new FileWriter("AvailableDrivers.txt");
+					for(int i=0;i<list.getModel().getSize();i++) {
+						write.write(String.valueOf(list.getModel().getElementAt(i)));
+					}
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		});
+		btnNewButton_1.setBounds(432, 50, 97, 25);
+		contentPane.add(btnNewButton_1);
+	}
+}
