@@ -114,7 +114,7 @@ public class LoginScreen {
 						while(temp!=null) {
 							if(temp.equals(textField.getText())) {
 								temp = buff.readLine();
-								if(temp.equals(passwordField.getText())) {
+								if(temp.equals(passwordField.getText())) {	
 									p1.setVisible(true);
 									break;
 								}
@@ -140,14 +140,16 @@ public class LoginScreen {
 				
 				if(comboBox.getSelectedItem().toString().equals("Driver")) {
 					try {
-						FileReader fileReader = new FileReader(new File("DriversData.txt"));
+						FileReader fileReader = new FileReader(new File("DriversLogin.txt"));
 						BufferedReader buff = new BufferedReader(fileReader);
 						String temp = buff.readLine();
 						while(temp!=null) {
 							if(temp.equals(textField.getText())) {
 								temp = buff.readLine();
 								if(temp.equals(passwordField.getText())) {
+									D1.setDriver(textField.getText());
 									D1.setVisible(true);
+									
 									break;
 								}
 								else {

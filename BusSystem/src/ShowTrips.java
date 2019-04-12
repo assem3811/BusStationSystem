@@ -40,8 +40,8 @@ public class ShowTrips extends JFrame {
 	 */
 	public ShowTrips() {
 		setTitle("Current Trips");
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 555, 333);
+		setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
+		setBounds(100, 100, 724, 459);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -63,7 +63,7 @@ public class ShowTrips extends JFrame {
 			}catch(Exception e) {
 				
 			}
-		list.setBounds(12, 13, 408, 227);
+		list.setBounds(12, 13, 574, 310);
 		contentPane.add(list);
 		
 		JButton btnNewButton = new JButton("Remove");
@@ -72,11 +72,16 @@ public class ShowTrips extends JFrame {
 				model.remove(list.getSelectedIndex());
 			}
 		});
-		btnNewButton.setBounds(432, 12, 97, 25);
+		btnNewButton.setBounds(597, 13, 97, 25);
 		contentPane.add(btnNewButton);
 		
 		JButton btnClose = new JButton("Close");
-		btnClose.setBounds(432, 50, 97, 25);
+		btnClose.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				setVisible(false);
+			}
+		});
+		btnClose.setBounds(597, 51, 97, 25);
 		contentPane.add(btnClose);
 	}
 }

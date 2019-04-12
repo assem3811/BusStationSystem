@@ -10,11 +10,12 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
-public class SettingTrips extends JFrame {
+public class SettingTrips<myServer> extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField textField;
@@ -57,10 +58,13 @@ public class SettingTrips extends JFrame {
 	private JLabel lblstops;
 	private JComboBox comboBox_3;
 	protected Container tripsList;
+	
+	
+	
 	public SettingTrips() {
 		
 		setTitle("Set Trip");
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
 		setBounds(100, 100, 710, 345);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -127,29 +131,49 @@ public class SettingTrips extends JFrame {
 		textField_4.setBounds(472, 176, 67, 46);
 		contentPane.add(textField_4);
 		
+		
+		AddDriver serv;
 		JComboBox comboBox = new JComboBox();
 		comboBox.addItem("Assem");
+		comboBox.addItem("Amr");
+		comboBox.addItem("Mohamed");
 		comboBox.setBounds(358, 29, 103, 25);
 		contentPane.add(comboBox);
+		
+		Tickets newBooking = new Tickets();
+		
 		
 		btnConfirm = new JButton("Confirm");
 		btnConfirm.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
+					int numOfPassengers = 0;
+					if(comboBox_1.getSelectedItem().equals("Bus")) {
+						numOfPassengers = Tickets.getBusTickets();
+					}
+					
+					if(comboBox_1.getSelectedItem().equals("MiniBus")) {
+						numOfPassengers = Tickets.getMiniBusTickets();
+					}
+					
+					if(comboBox_1.getSelectedItem().equals("Limosine")) {
+						numOfPassengers = Tickets.getLimosineTickets();
+					}
+					
+					
+			
 					FileWriter fileIn = new FileWriter("AvailableTrips.txt",true);
 					fileIn.write(Integer.toString(++ind)+","+textField.getText()+","+textField_1.getText()+","+textField_2.getText()+","+textField_3.getText()+","
 					+textField_4.getText()+","+"Driver:"+comboBox.getSelectedItem().toString()+","+comboBox_1.getSelectedItem().toString()
 					+","+comboBox_2.getSelectedItem().toString()
-					+","+"#Stops: "+comboBox_3.getSelectedItem().toString()+System.lineSeparator());
+					+","+"#Stops: "+comboBox_3.getSelectedItem().toString()+","+numOfPassengers+System.lineSeparator());
 					
 					fileIn.close();
 				} catch (IOException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
-				
-				
-				
+						
 			}
 		});
 		btnConfirm.setBounds(552, 253, 97, 25);
@@ -196,5 +220,8 @@ public class SettingTrips extends JFrame {
 		comboBox_3.addItem("Many");
 		comboBox_3.setBounds(605, 109, 75, 22);
 		contentPane.add(comboBox_3);
+		
 	}
+	
+	
 }

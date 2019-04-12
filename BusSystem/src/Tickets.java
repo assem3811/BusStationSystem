@@ -1,15 +1,17 @@
 
 public class Tickets {
 	
-	int noTickets;
 	
-	public int incrementTicket() {
-		return noTickets++;
+	public static int getBusTickets() {
+		return  50;
 	}
-	public int decrementTicket() {
-		return noTickets--;
+	
+	public static int getMiniBusTickets() {
+		return 30;
 	}
-	public int checkNumTicket() {
-		return noTickets;
+	
+	public static int getLimosineTickets() {
+		return 12;
 	}
+	
 }

@@ -1,24 +1,31 @@
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-import javax.swing.JComboBox;
-import javax.swing.JTextField;
+
+import javafx.scene.control.ComboBox;
+
+import javax.swing.JList;
+import javax.swing.border.BevelBorder;
+import javax.swing.border.CompoundBorder;
+import javax.swing.DefaultListModel;
 import javax.swing.JButton;
-import java.awt.Font;
-import java.awt.TextField;
+import javax.swing.JComboBox;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
 public class PassengersFrame extends JFrame {
 
 	private JPanel contentPane;
-	private JTextField textField;
-	private JTextField textField_1;
 
 	/**
 	 * Launch the application.
@@ -40,56 +47,87 @@ public class PassengersFrame extends JFrame {
 	 * Create the frame.
 	 */
 	public PassengersFrame() {
-		setTitle("Passengers Window");
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 600, 316);
+		setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
+		setBounds(100, 100, 676, 437);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JComboBox comboBox = new JComboBox();
-		comboBox.setBounds(200, 91, 282, 35);
-		contentPane.add(comboBox);
+		DefaultListModel<String> model = new DefaultListModel<>();
+		JList<String> list = new JList<>( model );
 		
-		JLabel lblAllTripsAvaiable = new JLabel("All Trips Avaiable :");
-		lblAllTripsAvaiable.setFont(new Font("Tahoma", Font.PLAIN, 19));
-		lblAllTripsAvaiable.setBounds(18, 88, 196, 35);
-		contentPane.add(lblAllTripsAvaiable);
 		
-		JLabel lblNewLabel = new JLabel("From :");
-		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 19));
-		lblNewLabel.setBounds(18, 59, 56, 16);
-		contentPane.add(lblNewLabel);
+		JList list2 = new JList();
 		
-		textField = new JTextField();
-		textField.setBounds(118, 56, 116, 22);
-		contentPane.add(textField);
-		textField.setColumns(10);
+		try {
+			FileReader fileReader = new FileReader(new File("AvailableTrips.txt"));
+			BufferedReader buff = new BufferedReader(fileReader);
+			String temp = buff.readLine();
+			while(temp != null) {
+				model.addElement(temp);
+				temp = buff.readLine();
+			}
+			
+			}catch(Exception e) {
+				
+			}
+		Tickets server = new Tickets();
+		SettingTrips newk = new SettingTrips();
 		
-		JLabel lblNewLabel_1 = new JLabel("To :");
-		lblNewLabel_1.setFont(new Font("Tahoma", Font.PLAIN, 19));
-		lblNewLabel_1.setBounds(279, 62, 56, 16);
-		contentPane.add(lblNewLabel_1);
+		list.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
+		list.setBounds(12, 13, 525, 288);
+		contentPane.add(list);
 		
-		textField_1 = new JTextField();
-		textField_1.setBounds(366, 56, 116, 22);
-		contentPane.add(textField_1);
-		textField_1.setColumns(10);
-		
-		JButton btnNewButton = new JButton("Confirm");
+		JButton btnNewButton = new JButton("Reserve");
 		btnNewButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				JOptionPane.showMessageDialog(btnNewButton, "Hello");
+			
+			public void actionPerformed(ActionEvent arg0) {
+				String item = model.get(list.getSelectedIndex());
+				String[] tripData = item.split(",");
+				int numOfPassengeres = Integer.parseInt(tripData[tripData.length-1]);
+				if(numOfPassengeres>0) {
+				numOfPassengeres--;
+				
+				tripData[tripData.length-1] = ""+numOfPassengeres;
+		        StringBuilder stringBuilder = new StringBuilder();
+
+		        for (int i = 0; i < tripData.length; i++) {
+		            stringBuilder.append(tripData[i]);
+		            if(i<tripData.length-1) {
+		            	 stringBuilder.append(",");
+		            }
+		        }
+
+		        model.set(list.getSelectedIndex(),stringBuilder.toString());
+				try {
+						
+					FileWriter fileIn = new FileWriter("AvailableTrips.txt",false);
+					for(int i = 0 ; i<model.getSize(); i++) {
+					
+					fileIn.write(model.get(i)+"\n");
+					}
+					fileIn.close();
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+					
+					}
+			
 			}
 		});
-		btnNewButton.setBounds(375, 186, 97, 25);
+		btnNewButton.setBounds(549, 12, 97, 25);
 		contentPane.add(btnNewButton);
 		
-		JLabel lblNewLabel_2 = new JLabel("BOOK YOUR TICKET ");
-		lblNewLabel_2.setFont(new Font("Times New Roman", Font.PLAIN, 24));
-		lblNewLabel_2.setBounds(132, 13, 282, 30);
-		contentPane.add(lblNewLabel_2);
+		JButton btnNewButton_1 = new JButton("Logout");
+		btnNewButton_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				System.exit(0);
+			}
+		});
+		btnNewButton_1.setBounds(549, 63, 97, 25);
+		contentPane.add(btnNewButton_1);
 	}
 	
 }

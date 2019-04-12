@@ -44,9 +44,9 @@ public class ShowDriver extends JFrame {
 	 * Create the frame.
 	 */
 	public ShowDriver() {
-		setTitle("Curent Drivers");
+		setTitle("Current Drivers");
 		setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
-		setBounds(100, 100, 555, 333);
+		setBounds(100, 100, 574, 335);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -77,7 +77,7 @@ public class ShowDriver extends JFrame {
 				model.remove(list.getSelectedIndex());
 			}
 		});
-		btnNewButton.setBounds(432, 12, 97, 25);
+		btnNewButton.setBounds(432, 47, 97, 25);
 		contentPane.add(btnNewButton);
 		
 		JButton btnClose = new JButton("Close");
@@ -86,9 +86,9 @@ public class ShowDriver extends JFrame {
 				setVisible(false);
 			}
 		});
-		btnClose.setBounds(432, 88, 97, 25);
+		btnClose.setBounds(432, 123, 97, 25);
 		contentPane.add(btnClose);
-		
+		AddDriver dummyD = new AddDriver();
 		JButton btnNewButton_1 = new JButton("Save");
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -99,11 +99,21 @@ public class ShowDriver extends JFrame {
 					}
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
+					System.out.println("File is empty!");
 					e.printStackTrace();
 				}
 			}
 		});
-		btnNewButton_1.setBounds(432, 50, 97, 25);
+		btnNewButton_1.setBounds(432, 85, 97, 25);
 		contentPane.add(btnNewButton_1);
+		
+		JButton btnNewButton_2 = new JButton("Add");
+		btnNewButton_2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dummyD.setVisible(true);
+			}
+		});
+		btnNewButton_2.setBounds(432, 12, 97, 25);
+		contentPane.add(btnNewButton_2);
 	}
 }
