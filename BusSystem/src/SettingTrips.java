@@ -54,7 +54,7 @@ public class SettingTrips extends JFrame {
 	 */
 	private JLabel lblDriver;
 	Manager server = new Manager();
-	Trips newTrip;
+	Trip newTrip;
 	int ind = 0;
 	private JLabel lblVehicle;
 	private JComboBox comboBox_1;

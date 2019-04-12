@@ -42,11 +42,13 @@ public class ManagerFrame extends JFrame {
 	 */
 	SettingTrips st = new SettingTrips();
 	Manager showT = new Manager();
-	//Trips service = new Trips();
+	ShowTrips showAvT = new ShowTrips();
+	ShowDriver showD=new ShowDriver();
+	
 	public ManagerFrame() {
 		setTitle("Admin");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 626, 300);
+		setBounds(100, 100, 626, 338);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -63,7 +65,7 @@ public class ManagerFrame extends JFrame {
 				st.setVisible(true);
 			}
 		});
-		btnNewButton.setBounds(64, 73, 190, 25);
+		btnNewButton.setBounds(181, 71, 190, 25);
 		contentPane.add(btnNewButton);
 		
 		JButton btnNewButton_1 = new JButton("Add Driver");
@@ -72,18 +74,17 @@ public class ManagerFrame extends JFrame {
 				
 			}
 		});
-		btnNewButton_1.setBounds(64, 177, 190, 25);
+		btnNewButton_1.setBounds(181, 147, 190, 25);
 		contentPane.add(btnNewButton_1);
 		
 		JButton btnNewButton_2 = new JButton("Show Trips");
 		btnNewButton_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				showT.showTrip(0);
-				
+				showAvT.setVisible(true);
 			}
 		});
 		
-		btnNewButton_2.setBounds(62, 122, 192, 25);
+		btnNewButton_2.setBounds(181, 109, 192, 25);
 		contentPane.add(btnNewButton_2);
 		
 		JButton btnLogout = new JButton("Logout");
@@ -92,7 +93,16 @@ public class ManagerFrame extends JFrame {
 				System.exit(0);
 			}
 		});
-		btnLogout.setBounds(499, 215, 97, 25);
+		btnLogout.setBounds(420, 253, 97, 25);
 		contentPane.add(btnLogout);
+		
+		JButton btnNewButton_3 = new JButton("Show All Drivers");
+		btnNewButton_3.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				showD.setVisible(true);
+			}
+		});
+		btnNewButton_3.setBounds(181, 189, 190, 25);
+		contentPane.add(btnNewButton_3);
 	}
 }

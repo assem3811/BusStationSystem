@@ -40,18 +40,7 @@ public class TripsTable extends JFrame {
 		contentPane.setLayout(null);
 		
 		table = new JTable();
-		table.setModel(new DefaultTableModel(
-			new Object[][] {
-				{null, null, null, null},
-				{"hjh", "ssfs", "sf", "fs"},
-				{"adad", null, null, null},
-				{null, null, null, null},
-			},
-			new String[] {
-				"New column", "New column", "New column", "New column"
-			}
-		));
-		table.setBounds(12, 47, 385, 137);
+		table.setBounds(35, 31, 385, 173);
 		contentPane.add(table);
 	}
 }

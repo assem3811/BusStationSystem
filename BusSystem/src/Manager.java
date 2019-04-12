@@ -1,4 +1,5 @@
 import java.util.HashMap;
+import java.awt.List;
 import java.util.ArrayList;
 
 public class Manager extends Employee {
@@ -16,4 +17,5 @@ public class Manager extends Employee {
 	public void showTrip(int index) {
 		System.out.println(tripMap.get(index));
 	}
+	
 }
